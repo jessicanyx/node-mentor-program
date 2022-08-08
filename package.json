@@ -1,0 +1,36 @@
+{
+  "name": "mentor-program",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "task1": "nodemon homework-1/task1.js",
+    "task2": "nodemon homework-1/task2.js",
+    "task3": "nodemon homework-1/task3.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicanyx/node-mentor-program.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicanyx/node-mentor-program/issues"
+  },
+  "homepage": "https://github.com/jessicanyx/node-mentor-program#readme",
+  "dependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/node": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "csvtojson": "^2.0.10",
+    "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.18.9"
+  }
+}
