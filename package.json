@@ -7,7 +7,6 @@
     "task1": "nodemon homework-1/task1.js",
     "task2": "nodemon homework-1/task2.js",
     "task3": "nodemon homework-1/task3.js",
-    "homework2": "nodemon homework-2/hw2.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "presets": [
