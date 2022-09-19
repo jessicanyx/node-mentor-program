@@ -6,10 +6,15 @@ import { ContainerTypes, ValidatedRequest, ValidatedRequestSchema, createValidat
 const app = express();
 const validator = createValidator()
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log('req.query: ', req.query)
+    console.log('req.body: ', req.body)
+    return next()
+})
 
 const userSchema = Joi.object({
     login: Joi.string().required(),
-    password: Joi.string().required().alphanum(),
+    password: Joi.string().required().regex(/^[a-zA-Z0-9]{3,30}$/), 
     age: Joi.number().required().min(4).max(130),
 });
 
@@ -44,11 +49,12 @@ app.get('/users', (req, res) => {
     const filter = req.query as Filter
     filter.loginSubstring = ''
     filter.limit = 10
-    const list = users
-        .filter(user => user.login.includes(filter.loginSubstring!) && !user.isDeleted)
-        .sort((a, b) => a.login.localeCompare(b.login))
+    if (filter.loginSubstring) {
+    const list = users?.filter(user => user.login?.includes(filter?.loginSubstring!) && !user.isDeleted)
+        .sort((a, b) => a.login?.localeCompare(b.login))
         .slice(0, filter.limit);
     res.send(list);
+    }
 });
 
 app.get('/users/:id', (req, res) => {
@@ -88,5 +94,5 @@ app.delete('/users/:id', (req, res) => {
 })
 
 app.listen(8080, () => {
-    console.log('Service is online');
+    console.log('Service is online: http://localhost:8080');
 });
