@@ -3,3 +3,5 @@
 
 # misc
 .DS_Store
+.en
+test.http
