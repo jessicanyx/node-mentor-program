@@ -1,8 +1,8 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
+// import { Users } from '../models/user';
 
 import config from '../config';
 
-export default async function (): Promise<Sequelize | unknown> {
   const sequelizeInstance = new Sequelize({
     host: config.database.host,
     port: config.database.port,
@@ -11,11 +11,6 @@ export default async function (): Promise<Sequelize | unknown> {
     password: config.database.password,
     dialect: 'postgres',
   });
+  // sequelizeInstance.addModels([User]);
 
-  try {
-    await sequelizeInstance.authenticate();
-    return sequelizeInstance;
-  } catch (error) {
-    throw new Error(`Unable to connect to the database: ${error}`);
-  }
-}
+export default sequelizeInstance

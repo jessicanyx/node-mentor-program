@@ -1,14 +1,15 @@
 import express from "express";
+import sequelizeInstance from './loaders/postgres';
 
-import initLoader from './loaders'
 import config from "./config";
 
-async function startServer() {
-    const app = express()
-    await initLoader(app)
-    app.listen(config.port, () => {
-        console.log(`Server is listening on port ${config.port}`)
-    })
-}
-
-startServer()
+const app = express()
+sequelizeInstance.sync({ force: true }).then(() => {
+    console.log('connected success!!!');
+    }).catch((err) => {
+    console.log(err);
+    });
+app.listen(config.port, () => {
+    console.log(`Server is listening on port ${config.port}`)
+})
+export { app };

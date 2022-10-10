@@ -3,5 +3,5 @@
 
 # misc
 .DS_Store
-.en
+.env
 test.http
