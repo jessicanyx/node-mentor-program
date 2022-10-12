@@ -4,7 +4,7 @@ export interface IUserInputDTO {
     age: number;
 }
 
-export interface IUser extends IUserInputDTO {
-    id: number;
+export interface User extends IUserInputDTO {
+    id: string;
     isDeleted: boolean;
 }
