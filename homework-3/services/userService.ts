@@ -3,7 +3,7 @@ import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Users } from '../models/userModel';
-import { User, IUserInputDTO } from '../interfaces/userInterface';
+import { IUserInputDTO } from '../interfaces/userInterface';
 
 @Service()
 export class UserService {

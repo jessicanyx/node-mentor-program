@@ -24,6 +24,7 @@ router.get('/', async(req, res) => {
 })
 
 router.get('/:id', async(req, res) => {
+    // const id = parseInt(req.params.id)
     const id = req.params.id
     const user = await userService.getUserById(id)
     if (!user) {
