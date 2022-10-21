@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { Container } from "typedi";
-import { IUserInputDTO } from '../interfaces/user';
-import { UserService } from '../services/user-service';
-import userValidator from "./userValidator";
+import { IUserInputDTO } from '../interfaces/userInterface';
+import { UserService } from '../services/userService';
+import userValidator from "./middlewares/userValidator";
 
 const router = Router();
 const userService = Container.get(UserService);
@@ -24,7 +24,8 @@ router.get('/', async(req, res) => {
 })
 
 router.get('/:id', async(req, res) => {
-    const id = parseInt(req.params.id)
+    // const id = parseInt(req.params.id)
+    const id = req.params.id
     const user = await userService.getUserById(id)
     if (!user) {
         res.status(404).send('User does not exit')
@@ -34,7 +35,7 @@ router.get('/:id', async(req, res) => {
 })
 
 router.put('/:id', userValidator, async(req, res) => {
-    const id = parseInt(req.params.id)
+    const id = req.params.id
     const data = req.body as IUserInputDTO
     const foundData = await userService.updateUserById(id, data)
 
@@ -47,7 +48,7 @@ router.put('/:id', userValidator, async(req, res) => {
 })
 
 router.delete('/:id', async(req, res) => {
-    const id = parseInt(req.params.id)
+    const id = req.params.id
     const foundData = await userService.deleteUserById(id)
     if (foundData[0] === 0) {
         res.status(404).send('User does not exit')

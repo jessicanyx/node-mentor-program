@@ -2,8 +2,5 @@
     "compilerOptions": {
       "esModuleInterop": true,
       "experimentalDecorators": true,
-      "types": [
-        "reflect-metadata"
-      ]
     },
   }
