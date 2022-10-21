@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { Users } from '../models/userModel';
 import { Groups } from '../models/groupModel';
 import {UserGroup} from '../models/userGroupModel';
+import { Permissions } from '../models/permissionModel';
 
 import config from '../config/env';
 
@@ -13,8 +14,6 @@ import config from '../config/env';
     password: config.db.password,
     dialect: 'postgres',
   });
-  sequelizeInstance.addModels([Users]);
-  sequelizeInstance.addModels([Groups]);
-  sequelizeInstance.addModels([UserGroup]);
+  sequelizeInstance.addModels([Users, Groups, UserGroup, Permissions]);
 
 export default sequelizeInstance

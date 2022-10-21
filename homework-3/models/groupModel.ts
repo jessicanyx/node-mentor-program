@@ -1,17 +1,24 @@
-import { Column, PrimaryKey, Model, Table } from 'sequelize-typescript';
+import { Column, PrimaryKey, Model, Table,DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
 import { Permission } from '../interfaces/groupInterface';
-
-@Table({ freezeTableName: true })
-export class Groups extends Model {
+import { UserGroup } from './userGroupModel';
+import { Users } from './userModel';
+import { Permissions } from './permissionModel';
+@Table
+class Groups extends Model {
 
   @PrimaryKey
-  @Column
+  @Column(DataType.STRING)
   id!: string
 
-  @Column
+  @Column(DataType.STRING)
   name!: string
 
-  @Column
+  @HasMany(() => Permissions)
   permissions!: Array<Permission>
 
+  @BelongsToMany(() => Users, () => UserGroup)
+  users: any[]
+
 }
+
+export {Groups}

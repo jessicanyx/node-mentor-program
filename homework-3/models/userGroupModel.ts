@@ -1,27 +1,13 @@
 import { Column, Model, Table, BelongsToMany, ForeignKey } from 'sequelize-typescript';
-
+import { Users } from './userModel';
+import { Groups } from './groupModel';
 @Table
-({ freezeTableName: true })
-class Users extends Model {
-  @BelongsToMany(() => Groups, () => UserGroup)
-  group: Groups[]
-}
-
-@Table
-({ freezeTableName: true })
-class Groups extends Model {
-  @BelongsToMany(() => Users, () => UserGroup)
-  users: Users[]
-}
-
-@Table
-({ freezeTableName: true })
-export class UserGroup extends Model {
+class UserGroup extends Model {
   @ForeignKey(() => Users)
-  @Column
   userId!: string
 
   @ForeignKey(() => Groups)
-  @Column
   groupId!: string
 }
+
+export {UserGroup}

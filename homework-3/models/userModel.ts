@@ -1,22 +1,28 @@
-import { Column, PrimaryKey, Model, Table } from 'sequelize-typescript';
+import { Column, PrimaryKey, Model, Table, DataType, BelongsToMany } from 'sequelize-typescript';
+import { Groups } from './groupModel';
+import { UserGroup } from './userGroupModel';
 
 @Table({ freezeTableName: true })
-export class Users extends Model {
+class Users extends Model {
 
   @PrimaryKey
-  @Column
+  @Column(DataType.STRING)
   id!: string
 
-  @Column
+  @Column(DataType.STRING)
   login!: string
 
-  @Column
+  @Column(DataType.STRING)
   password!: string
 
-  @Column
+  @Column(DataType.INTEGER)
   age!: number
 
-  @Column
+  @Column(DataType.BOOLEAN)
   isDeleted!: boolean
 
+  @BelongsToMany(() => Groups, ()=> UserGroup)
+  group: any[]
 }
+
+export {Users}
